@@ -3,6 +3,7 @@ import { IOurWeather } from '../../model/iour-weather';
 import { IOpenMeto } from '../../model/iopen-meto';
 import { Degree } from '../../model/degree';
 import { SpeedUnit } from '../../model/speed-unit';
+import { ICity } from '../../model/icity';
 
 @Component({
   selector: 'app-weather',
@@ -15,6 +16,7 @@ export class WeatherComponent {
   @Input() tempDegrees: Degree = Degree.C;
   @Input() speedUnit: SpeedUnit = SpeedUnit.KMH;
   @Input() isHumidityStatus: boolean = false;
+  @Input() listofcities:ICity[] =[]; //z bazy danych
 
   weather: IOurWeather = {} as IOurWeather;
   
@@ -24,9 +26,7 @@ export class WeatherComponent {
       //var weather = this.getWeatherOpenMeteo();
       //this.weather.temp = weather.temp;
     }else{
-
     }
-    
   }
 
   getHumidityStatus(): string {   // 0-30% - suchy, 31-60% - umiarkowany, 61-100% - wilgotny
