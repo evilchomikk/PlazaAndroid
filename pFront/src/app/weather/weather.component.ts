@@ -16,6 +16,7 @@ export class WeatherComponent {
   @Input() tempDegrees: Degree = Degree.C;
   @Input() speedUnit: SpeedUnit = SpeedUnit.KMH;
   @Input() isHumidityStatus: boolean = false;
+  @Input() listofcities:ICity[] =[]; //z bazy danych
 
   weather: IOurWeather = {
     temp: 0,
