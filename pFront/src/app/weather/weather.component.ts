@@ -4,6 +4,7 @@ import { IOpenMeto } from '../../model/iopen-meto';
 import { Degree } from '../../model/degree';
 import { SpeedUnit } from '../../model/speed-unit';
 import { ICoordinates } from '../../model/icoordinates';
+import { ICity } from '../../model/icity';
 
 @Component({
   selector: 'app-weather',
@@ -22,7 +23,7 @@ export class WeatherComponent {
     temp: 0,
     humidity: 0,
     rainChance: 0,
-    windSpeed: 0
+    windSpeed: "0"
   } as IOurWeather;
   coordinates: ICoordinates = {
     latitude: 0,
