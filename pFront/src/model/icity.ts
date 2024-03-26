@@ -1,5 +1,5 @@
 export interface ICity {
     name: string;
-    langitude: number;
+    latitude: number;
     longtitude: number;
 }

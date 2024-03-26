@@ -19,28 +19,33 @@ export class WeatherComponent {
   @Input() isHumidityStatus: boolean = false;
   @Input() listofcities:ICity[] =[]; //z bazy danych
 
+
+
   weather: IOurWeather = {
     temp: 0,
     humidity: 0,
     rainChance: 0,
     windSpeed: "0"
   } as IOurWeather;
-  coordinates: ICoordinates = {
-    latitude: 0,
-    longitude: 0  
-  } as ICoordinates;
+
   
 
-  ngOnInit(): void {
-    //this.coordinates.latitude = // get the latitude value from the select option element
-    //this.coordinates.longitude = // get the longitude value from the select option element
-    if(this.isOpenMeteo) {
-      this.getWeatherOpenMeteo(this.coordinates.latitude, this.coordinates.longitude);
-    } else {
-      this.getWeatherWeatherApi('key', this.coordinates.latitude, this.coordinates.longitude);
+  setWeather(idx : number) {
+    var myweather;
+
+    if(this.isOpenMeteo){
+      var openWeather :IOpenMeto = this.getWeatherOpenMeteo(this.listofcities[idx]);
+      this.weather.temp = openWeather.current.temperature_2m;
+      this.weather.humidity = openWeather.current.relative_humidity_2m;
+      this.weather.rainChance = openWeather.current.rain;
+      this.weather.windSpeed = openWeather.current.wind_speed_10m.toString();
+    }else{
+      this.getWeatherWeatherApi('key', this.listofcities[idx])
+
+
     }
   }
-
+  
   getHumidityStatus(): string {   // 0-30% - suchy, 31-60% - umiarkowany, 61-100% - wilgotny
     if(this.weather.humidity <= 30){
       return 'suchy';
@@ -53,19 +58,22 @@ export class WeatherComponent {
     return 'nieznany';
   }
 
-  getWeatherOpenMeteo(latitude: number, longitude: number) {
-    const url = 'https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&current=temperature_2m,relative_humidity_2m,rain,wind_speed_10m/weather';
+  getWeatherOpenMeteo(city: ICity) {
+    const url = 'https://api.open-meteo.com/v1/forecast?latitude='+city.latitude+'&longitude='+city.longtitude+'&current=temperature_2m,relative_humidity_2m,rain,wind_speed_10m/weather';
+    var myweather:IOpenMeto ={} as IOpenMeto;
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        this.weather.temp = data.current.temperature_2m;
-        this.weather.humidity = data.current.relative_humidity_2m;
-        this.weather.rainChance = data.current.rain;
-        this.weather.windSpeed = data.current.wind_speed_10m;
+        // this.weather.temp = data.current.temperature_2m;
+        // this.weather.humidity = data.current.relative_humidity_2m;
+        // this.weather.rainChance = data.current.rain;
+        // this.weather.windSpeed = data.current.wind_speed_10m;
+        myweather = data;
       });
+      return myweather;
   } 
 
-    getWeatherWeatherApi(key: String, latitude: number, longitude: number){
+    getWeatherWeatherApi(key: String, city: ICity){
     const url = 'https://api.weatherapi.com/v1/current.json?key={key}&q={latitude},{longitude}&aqi=no';
     fetch(url)
       .then(response => response.json())
