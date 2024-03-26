@@ -1,4 +1,4 @@
-<p>weather works!</p>
+<!--<p>weather works!</p>
 
 <div>
     <p>{{weather.temp}}+{{tempDegrees}}</p>
@@ -8,5 +8,41 @@
             {{listofcities | json}}
         </pre>
     </code>
-</div>
+</div> -->
+
+
+<div id="weather-content">
+    <div class="rectangle">
+      <div style="padding: 20px;">
+	  <div id="select">
+        <select id="location-select" style="margin-bottom: 10px;">
+          <option value="" disabled selected>Wybierz miejscowość</option>
+          <option value="mielno">Mielno</option>
+          <option value="sarbinowo">Sarbinowo</option>
+        </select>
+		</div>
+		<div id="weather-data">
+        <div class="inputs">
+          <div class="input-row">
+            <label for="temperature-input">Temperatura:</label>
+            <p id="temperature-input"></p>
+          </div>
+          <div class="input-row">
+            <label for="humidity-input">Wilgotność:</label>
+            <p id="humidity-input"></p>
+          </div>
+          <div class="input-row">
+            <label for="rain-chance-input">Szansa na deszcz:</label>
+            <p id="rain-chance-input"></p>
+          </div>
+          <div class="input-row">
+            <label for="wind-speed-input">Prędkość wiatru:</label>
+            <p id="wind-speed-input"></p>
+          </div>
+		  </div>
+        </div>
+      </div>
+    </div>
+	</div>
+<script src="script.js"></script>
 

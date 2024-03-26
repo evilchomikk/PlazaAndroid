@@ -1,1 +1,29 @@
+<!-- <app-weather [listofcities]="cities"></app-weather> -->
+
+<div id="main">
+  <div id="header">
+<div class="dropdown">
+  <button onclick="toggleMenu()" class="menu-btn">MENU</button>
+  <div id="dropdown-menu" class="dropdown-content">
+    <button>Zlecenia</button>
+    <button>Pogoda</button>
+    <button>Lista zleceń</button>
+  </div>
+</div>
+    <img src="weather/logo.png" alt="Logo" class="user-img"/>
+    <h1 class="welcome-msg">Witaj Użytkowniku</h1>
+    <div class="currency">
+      <label for="currency-input">Waluta:</label>
+      <p id="currency-input"></p>
+    </div>
+  </div>
+
+  <div id="content">
 <app-weather [listofcities]="cities"></app-weather>
+  </div>
+
+  <div id="footer">
+    <h2>Stworzone przez: Hubert Kulka, Macin Mazurek, Konrad Klimek</h2>
+  </div>
+</div>
+<script src="js/script.js"></script>
