@@ -28,7 +28,15 @@ export class WeatherComponent {
     windSpeed: "0"
   } as IOurWeather;
 
-  
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.getWeatherOpenMeteo({
+      name: 'Warszawa',
+      latitude: 52.22977,
+      longtitude: 21.01178
+    })
+  }
 
   setWeather(idx : number) {
     var myweather;

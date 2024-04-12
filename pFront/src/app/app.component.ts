@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICity } from '../model/icity';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,13 @@ import { ICity } from '../model/icity';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
   title = 'pFront';
 
   cities: ICity[] = [];
+
+  constructor(private router:Router) { }
+
 
   ngOnInit(): void {
     this.getCities().then(cities => {
@@ -39,4 +44,13 @@ export class AppComponent implements OnInit {
             return []; // Return empty array in case of error
         });
   }
+
+  goToWeather(){
+    this.router.navigate(['/weather']);
+  }
+
+  goToOrders(){
+    this.router.navigate(['/orders']);
+  }
+
 }

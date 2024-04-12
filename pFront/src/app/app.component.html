@@ -5,8 +5,8 @@
 <div class="dropdown">
   <button onclick="toggleMenu()" class="menu-btn">MENU</button>
   <div id="dropdown-menu" class="dropdown-content">
-    <button>Zlecenia</button>
-    <button>Pogoda</button>
+    <button (click)="goToOrders()">Zlecenia</button>
+    <button (click)="goToWeather()">Pogoda</button>
     <button>Lista zleceń</button>
   </div>
 </div>
@@ -20,7 +20,7 @@
 
   <div id="content">
 <!-- <app-weather [listofcities]="cities"></app-weather> -->
-<app-orders></app-orders>
+<router-outlet></router-outlet>
 </div>
 
   <div id="footer">
