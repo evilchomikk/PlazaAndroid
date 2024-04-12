@@ -1,0 +1,45 @@
+.all {
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #d9edf7;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.order-table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-type,
+.city,
+.user {
+    display: table-cell;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.type-title,
+.city-title,
+.user-title {
+    font-weight: bold;
+    color: white;
+    background-color: #5bc0de;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.type-content,
+.city-content,
+.user-content {
+    height: 100px;
+    margin-top: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+}
