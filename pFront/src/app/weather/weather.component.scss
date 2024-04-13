@@ -10,35 +10,4 @@
   height: 100%; 
   }
   
-  #select {
-  float: left; 
-  }
-  
-  #weather-data {
-  float: right;
-  }
-  
-  .inputs {
-  display: flex;
-  flex-direction: column;
-  }
-  
-  .input-row {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  margin-bottom: 10px;
-  }
-  
-  .input-row label {
-  text-align: right; 
-  margin-right: 10px; 
-  }
-  
-  .input-row input {
-  flex: 1;
-  }
-  
-  .input-row label {
-  margin-right: 100px;
-  }
+

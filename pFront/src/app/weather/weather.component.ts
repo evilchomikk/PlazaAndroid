@@ -15,8 +15,6 @@ import { NgModule } from '@angular/core';
   styleUrl: './weather.component.scss',
 })
 export class WeatherComponent {
-  [x: string]: any;
-
   @Input() isOpenMeteo: boolean = true;
   @Input() tempDegrees: Degree = Degree.C;
   @Input() speedUnit: SpeedUnit = SpeedUnit.KMH;
@@ -45,6 +43,7 @@ export class WeatherComponent {
   }
   ngOnInit(): void {
     this.setWeather(this.listofcities[0]);
+    console.log(this.listofcities);
   }
 
   async setWeather(city: ICity) {
@@ -75,6 +74,10 @@ export class WeatherComponent {
       this.weather.temp,
       this.tempDegrees
     );
+    this.weather.windSpeed = this.convertSpeedUnits(
+      +this.weather.windSpeed,
+      this.speedUnit
+    ).toString();
   }
 
   getHumidityStatus(humidity: number): string {
@@ -103,7 +106,18 @@ export class WeatherComponent {
         return temp;
     }
   }
-
+  convertSpeedUnits(speed: number, unit: SpeedUnit): number {
+    switch (unit) {
+      case SpeedUnit.KMH:
+        return speed;
+      case SpeedUnit.MPH:
+        return speed / 1.609344;
+      case SpeedUnit.MS:
+        return speed / 3.6;
+      default:
+        return speed;
+    }
+  }
   getWeatherOpenMeteo(city: ICity): Promise<IOpenMeto> {
     const url =
       'https://api.open-meteo.com/v1/forecast?latitude=' +

@@ -35,8 +35,8 @@ export class AppComponent implements OnInit {
 
   }
 
-  getCities(): Promise<ICity[]> {
-    return fetch('http://localhost:8080/api/city/getAllCities')
+  async getCities(): Promise<ICity[]> {
+    return await fetch('http://localhost:8080/api/city/getAllCities')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -48,13 +48,17 @@ export class AppComponent implements OnInit {
         return data.map((city: any) => ({
           name: city.cityName,
           latitude: city.latitude,
-          longitude: city.longitude,
+          longitude: city.longitude
+          
         })) as ICity[];
+        
       })
       .catch((error) => {
         console.error('There was a problem with the fetch operation:', error);
         return []; // Return empty array in case of error
       });
+
+      console.log(this.cities);
   }
 
   getOrders(): Promise<IOrders[]> {

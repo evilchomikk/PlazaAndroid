@@ -10,8 +10,8 @@ import { IOrders } from '../../model/iorders';
 })
 export class OrdersComponent {
 
-  @Input() listofcities: ICity[] = []; //z bazy danych
-  listoforders!: IOrders []; // do zmiany
+  @Input() listofcities: ICity[] = []; //z bazy danych 
+  @Input() listoforders: IOrders[] =[]; // do zmiany
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();

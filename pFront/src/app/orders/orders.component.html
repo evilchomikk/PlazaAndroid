@@ -4,13 +4,13 @@
       </div>
       <div class="order-table">
         <div class="list-group" id="orderList">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let order of orders" (click)="selectOrder(order)">
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let order of listoforders" (click)="selectOrder(order)">
             <div class="d-flex w-100 justify-content-between">
               
             </div>
-            <p class="mb-1">Typ zlecenia: <strong>{{ order.type }}</strong></p>
-            <p class="mb-1">Miejscowość: <strong>{{ order.city }}</strong></p>
-            <p class="mb-1">Użytkownik: <strong>{{ order.user }}</strong></p>
+            <p class="mb-1">Typ zlecenia: <strong>{{ order.value }}</strong></p>
+            <!-- <p class="mb-1">Miejscowość: <strong>{{ order.city }}</strong></p>
+            <p class="mb-1">Użytkownik: <strong>{{ order.user }}</strong></p> -->
           </a>
         </div>
       </div>
