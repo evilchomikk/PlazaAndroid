@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ICity } from '../../model/icity';
+import { Router } from '@angular/router';
+import { IOrders } from '../../model/iorders';
 
 @Component({
   selector: 'app-orders',
@@ -6,15 +9,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./orders.component.scss'] // Zmiana z `styleUrl` na `styleUrls`
 })
 export class OrdersComponent {
-  orders: any[];
 
-  constructor() {
-    this.orders = [
-      { type: 'Typ1', city: 'Miasto1', user: 'Użytkownik1' },
-      { type: 'Typ2', city: 'Miasto2', user: 'Użytkownik2' },
-      { type: 'Typ3', city: 'Miasto3', user: 'Użytkownik3' }
-    ];
+  @Input() listofcities: ICity[] = []; //z bazy danych
+  listoforders!: IOrders []; // do zmiany
+
+  constructor(private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as { orders: IOrders[] };
+    if (state) {
+      this.listoforders = state.orders;
+    }
   }
+  
 
   selectOrder(order: any) {
     alert(`Wybrałeś zlecenie: Typ zlecenia: ${order.type}, Miejscowość: ${order.city}`);
