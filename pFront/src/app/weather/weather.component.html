@@ -12,37 +12,39 @@
 
 
 <div id="weather-content">
-    <div class="rectangle">
-      <div style="padding: 20px;">
-	  <div id="select">
-        <select id="location-select" style="margin-bottom: 10px;">
-          <option value="" disabled selected>Wybierz miejscowość</option>
-          <option value="mielno">Mielno</option>
-          <option value="sarbinowo">Sarbinowo</option>
+
+  <div class="rectangle">
+    <div style="padding: 20px;">
+      
+      <div id="select">
+        <label for="location-select">Wybierz miejscowość: </label>
+        <select id="location-select" class="form-select" [(ngModel)]="selectedCity" style="margin-bottom: 10px;"
+          (change)="setWeather(selectedCity)">
+          <option *ngFor="let city of listofcities" [ngValue]="city">{{city.name}} </option>
         </select>
-		</div>
-		<div id="weather-data">
+      </div>
+
+      <div id="weather-data">
         <div class="inputs">
           <div class="input-row">
             <label for="temperature-input">Temperatura:</label>
-            <p id="temperature-input"></p>
+            <p id="temperature-input">{{weather.temp}}{{tempDegrees}}</p>
           </div>
           <div class="input-row">
             <label for="humidity-input">Wilgotność:</label>
-            <p id="humidity-input"></p>
+            <p id="humidity-input">{{weather.humidity}}</p>
           </div>
           <div class="input-row">
             <label for="rain-chance-input">Szansa na deszcz:</label>
-            <p id="rain-chance-input"></p>
+            <p id="rain-chance-input">{{weather.rainChance}}</p>
           </div>
           <div class="input-row">
             <label for="wind-speed-input">Prędkość wiatru:</label>
-            <p id="wind-speed-input"></p>
+            <p id="wind-speed-input">{{weather.windSpeed}}</p>
           </div>
-		  </div>
         </div>
       </div>
     </div>
-	</div>
+  </div>
+</div>
 <script src="script.js"></script>
-
