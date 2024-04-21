@@ -61,8 +61,8 @@ export class AppComponent implements OnInit {
       console.log(this.cities);
   }
 
-  getOrders(): Promise<IOrders[]> {
-    return fetch('http://localhost:8080/api/orders/getAllOrders')
+  async getOrders(): Promise<IOrders[]> {
+    return await fetch('http://localhost:8080/api/orders/getAllOrders')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -70,16 +70,33 @@ export class AppComponent implements OnInit {
         return response.json();
       })
       .then((data) => {
-        // Assuming the data structure is correct
-        return data.map((orders: any) => ({
-          name: orders.cityName,
-          latitude: orders.latitude,
-          longitude: orders.longitude,
+        return data.map((order: any) => ({
+          idCity: {
+            cityName: order.idCity.cityName,
+            latitude: order.idCity.latitude,
+            longitude: order.idCity.longitude,
+          },
+          idStatuses: {
+            statusesName: order.idStatuses.statusesName,
+          },
+          idOrdermaker: {
+            id: order.idOrdermaker.id,
+            username: order.idOrdermaker.username,
+            password: order.idOrdermaker.password,
+            currency: order.idOrdermaker.currency,
+          },
+          idOrdertaker: order.idOrdertaker,
+          idOrdertype: {
+            ordertypeName: order.idOrdertype.ordertypeName,
+          },
+          duration: order.duration,
+          value: order.value,
+          isActive: order.isActive,
         })) as IOrders[];
       })
       .catch((error) => {
         console.error('There was a problem with the fetch operation:', error);
-        return []; // Return empty array in case of error
+        return [];
       });
   }
 
