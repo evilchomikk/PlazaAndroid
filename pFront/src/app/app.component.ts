@@ -5,6 +5,7 @@ import { WeatherComponent } from './weather/weather.component';
 import { OrdersComponent } from './orders/orders.component';
 import { every } from 'rxjs';
 import { IOrders } from '../model/iorders';
+import { IpService } from './ip.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
 
   orders: IOrders[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private ip : IpService) {}
 
   ngOnInit(): void {
     this.getCities().then((cities) => {
@@ -36,11 +37,12 @@ export class AppComponent implements OnInit {
   }
 
   async getCities(): Promise<ICity[]> {
-    return await fetch('http://localhost:8080/api/city/getAllCities')
+    return await fetch('http://'+this.ip.Ip+':8080/api/city/getAllCities')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+        console.log(response);
         return response.json();
       })
       .then((data) => {

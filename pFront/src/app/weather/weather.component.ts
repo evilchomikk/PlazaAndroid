@@ -8,6 +8,7 @@ import { ICity } from '../../model/icity';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { IpService } from '../ip.service';
 
 @Component({
   selector: 'app-weather',
