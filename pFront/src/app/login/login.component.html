@@ -1,0 +1,19 @@
+<div class="container">
+<div class="row">
+    <div class="col-12">
+        <label for="username-input"><h2>Login:</h2></label>
+        <input id="username-input" type="text" class="form-control" placeholder="Login" [(ngModel)]="logindata.username">
+
+        <label for="password-input"><h2>Password:</h2></label>
+        <input id="password-input" type="password" class="form-control" placeholder="Password" [(ngModel)]="logindata.password">
+        
+        <div class="row">
+            <div class="col-12 text-center"> <!-- Added text-center class here -->
+                <button class="btn btn-primary" (click)="loginUser()" style="width: 50%;">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- <p>{{logindata | json}}</p> -->
