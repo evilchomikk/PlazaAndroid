@@ -20,11 +20,11 @@ export interface IOrderType {
 }
 
 export interface IOrders {
-    idCity: ICity;
-    idStatuses: IStatus;
+    cityName: string;
+    statusName: IStatus;
     idOrdermaker: IOrderMaker;
     idOrdertaker: null | IOrderMaker;
-    idOrdertype: IOrderType;
+    orderTypeName: IOrderType;
     duration: string;
     value: number;
     isActive: number;

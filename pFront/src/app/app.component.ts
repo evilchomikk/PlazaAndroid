@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
   }
 
   async getOrders(): Promise<IOrders[]> {
-    return await fetch('http://localhost:8080/api/orders/getAllOrders')
+    return await fetch('http://localhost:8080/api/order/getAllOrders')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -73,14 +73,8 @@ export class AppComponent implements OnInit {
       })
       .then((data) => {
         return data.map((order: any) => ({
-          idCity: {
-            cityName: order.idCity.cityName,
-            latitude: order.idCity.latitude,
-            longitude: order.idCity.longitude,
-          },
-          idStatuses: {
-            statusesName: order.idStatuses.statusesName,
-          },
+          cityName: order.cityName,
+          statusName: order.statusName,
           idOrdermaker: {
             id: order.idOrdermaker.id,
             username: order.idOrdermaker.username,
@@ -88,9 +82,7 @@ export class AppComponent implements OnInit {
             currency: order.idOrdermaker.currency,
           },
           idOrdertaker: order.idOrdertaker,
-          idOrdertype: {
-            ordertypeName: order.idOrdertype.ordertypeName,
-          },
+          orderTypeName: order.ordertypeName,
           duration: order.duration,
           value: order.value,
           isActive: order.isActive,
