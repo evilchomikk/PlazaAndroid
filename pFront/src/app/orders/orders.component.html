@@ -5,12 +5,21 @@
       <div class="order-table">
         <div class="list-group" id="orderList">
           <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let order of listoforders" (click)="selectOrder(order)">
-            <div class="d-flex w-100 justify-content-between">
+            <div class="d-flex w-100 justify-content-between" *ngIf="order.isActive">
               
-            </div>
-            <p class="mb-1">Typ zlecenia: <strong>{{ order.value }}</strong></p>
-            <!-- <p class="mb-1">Miejscowość: <strong>{{ order.city }}</strong></p>
-            <p class="mb-1">Użytkownik: <strong>{{ order.user }}</strong></p> -->
+            
+            <p class="mb-1">Typ zlecenia: <strong>{{ order.orderTypeName }}</strong></p>
+            <p >{{order.cityName}}</p>
+            <p >{{order.duration}}</p>
+            <p >{{order.idOrdermaker.username}}</p>
+            <p >{{order.value}}</p>
+            <p >{{order.statusName}}</p>
+
+            
+            <button (click)="takeOrder(order)" *ngIf="order.orderTypeName.ordertypeName === 'Take' ">Przyjmij Zlecenie</button> // ta nazwa to placeholder
+            <button (click)="giveOrder(order)" *ngIf="order.orderTypeName.ordertypeName === 'Give'">Przyjmij Zlecenie</button> //sa dwa rózne bo miało byc zeby zaznaczyc miejsce gdzie jest postawione
+
+          </div>
           </a>
         </div>
       </div>

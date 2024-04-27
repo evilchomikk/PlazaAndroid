@@ -25,7 +25,7 @@
               <label for="location-select">Wybierz miejscowość: </label>
               <select id="location-select" class="form-select " [(ngModel)]="selectedCity" style="margin-bottom: 10px;"
                 (change)="setWeather(selectedCity)">
-                <option *ngFor="let city of listofcities" [ngValue]="city">{{city.name}} </option>
+                <option *ngFor="let city of listofcities ; let i = index" [selected]="i===0" [ngValue]="city">{{city.name}} </option>
               </select>
             </div>
 

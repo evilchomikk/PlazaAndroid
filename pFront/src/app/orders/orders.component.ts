@@ -9,6 +9,12 @@ import { IOrders } from '../../model/iorders';
   styleUrls: ['./orders.component.scss'] // Zmiana z `styleUrl` na `styleUrls`
 })
 export class OrdersComponent {
+giveOrder(_order: IOrders) {
+throw new Error('Method not implemented.');
+}
+takeOrder(_order: IOrders) {
+throw new Error('Method not implemented.');
+}
 
   @Input() listofcities: ICity[] = []; //z bazy danych 
   @Input() listoforders: IOrders[] =[]; 
