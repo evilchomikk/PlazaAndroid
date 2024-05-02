@@ -82,7 +82,7 @@ export class AppComponent implements OnInit {
             currency: order.idOrdermaker.currency,
           },
           idOrdertaker: order.idOrdertaker,
-          orderTypeName: order.ordertypeName,
+          orderTypeName: order.orderTypeName,
           duration: order.duration,
           value: order.value,
           isActive: order.isActive,
