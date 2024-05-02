@@ -73,6 +73,7 @@ export class AppComponent implements OnInit {
       })
       .then((data) => {
         return data.map((order: any) => ({
+          id: order.id,
           cityName: order.cityName,
           statusName: order.statusName,
           idOrdermaker: {

@@ -20,6 +20,7 @@ export interface IOrderType {
 }
 
 export interface IOrders {
+    id: number;
     cityName: string;
     statusName: IStatus;
     idOrdermaker: IOrderMaker;
