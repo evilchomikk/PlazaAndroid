@@ -8,16 +8,16 @@
             <div class="d-flex w-100 justify-content-between" *ngIf="order.isActive">
               
             
-            <p class="mb-1">Typ zlecenia: <strong>{{ order.orderTypeName }}</strong></p>
-            <p >{{order.cityName}}</p>
-            <p >{{order.duration}}</p>
-            <p >{{order.idOrdermaker.username}}</p>
-            <p >{{order.value}}</p>
-            <p >{{order.statusName}}</p>
+            <p class="mb-1">Typ zlecenia: <strong>{{ order.orderTypeName.ordertypeName | order}}</strong></p>
+            <p >Miejscowość: {{order.cityName}}</p>
+            <p >Czas: {{order.duration}}</p>
+            <p >Użytkownik: {{order.idOrdermaker.username}}</p>
+            <p >Cena: {{order.value}}</p>
+            <p >Status: {{order.statusName.statusesName | status}}</p>
 
             
-            <button (click)="takeOrder(order)" *ngIf="order.orderTypeName.ordertypeName === 'Take' ">Przyjmij Zlecenie</button> // ta nazwa to placeholder
-            <button (click)="giveOrder(order)" *ngIf="order.orderTypeName.ordertypeName === 'Give'">Przyjmij Zlecenie</button> //sa dwa rózne bo miało byc zeby zaznaczyc miejsce gdzie jest postawione
+            <button class="accept-order-button" (click)="takeOrder(order)" *ngIf="order.orderTypeName.ordertypeName === 'Take' ">Przyjmij Zlecenie</button> <!--ta nazwa to placeholder--> 
+            
 
           </div>
           </a>

@@ -7,5 +7,5 @@ export class IpService {
 
   constructor() { }
 
-  Ip:string = '192.168.1.47'//Tu Dajecie Swoje Ip
+  Ip:string = '192.168.1.13'//Tu Dajecie Swoje Ip
 }

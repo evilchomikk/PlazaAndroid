@@ -64,35 +64,44 @@ export class AppComponent implements OnInit {
   }
 
   async getOrders(): Promise<IOrders[]> {
-    return await fetch('http://localhost:8080/api/order/getAllOrders')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        return data.map((order: any) => ({
+    try {
+      const response = await fetch('http://localhost:8080/api/order/getAllOrders');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data: any[] = await response.json();
+      return data.map((order) => {
+        const newOrder: IOrders = {
           id: order.id,
           cityName: order.cityName,
-          statusName: order.statusName,
+          statusName: {
+            statusesName: order.statusName,
+          },
           idOrdermaker: {
             id: order.idOrdermaker.id,
             username: order.idOrdermaker.username,
             password: order.idOrdermaker.password,
             currency: order.idOrdermaker.currency,
           },
-          idOrdertaker: order.idOrdertaker,
-          orderTypeName: order.orderTypeName,
+          idOrdertaker: order.idOrdertaker ? {
+            id: order.idOrdertaker.id,
+            username: order.idOrdertaker.username,
+            password: order.idOrdertaker.password,
+            currency: order.idOrdertaker.currency,
+          } : null,
+          orderTypeName: {
+            ordertypeName: order.orderTypeName,
+          },
           duration: order.duration,
           value: order.value,
           isActive: order.isActive,
-        })) as IOrders[];
-      })
-      .catch((error) => {
-        console.error('There was a problem with the fetch operation:', error);
-        return [];
+        };
+        return newOrder as IOrders;
       });
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      return [];
+    }
   }
 
   goToWeather() {
@@ -102,7 +111,5 @@ export class AppComponent implements OnInit {
   goToOrders() {
     this.router.navigate(['/orders']),{state: {orders: this.orders}};
   }
-
-
 
 }
