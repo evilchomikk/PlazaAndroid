@@ -12,7 +12,7 @@ export class StatusPipe implements PipeTransform { // change Status to StatusPip
     if (value === 'rejected') {
       return 'odrzucone';
     }
-    if (value === 'awaiting') {
+    if (value === 'waiting') {
       return 'oczekujące';
     }
     return value;

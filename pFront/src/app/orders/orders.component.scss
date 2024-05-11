@@ -6,7 +6,7 @@
   }
   
   .list-group-item {
-    position: relative;
+    //position: relative;
     display: block;
     padding: 0.75rem 1.25rem;
     background-color: #fff;
@@ -116,5 +116,15 @@
     text-align: center;
   }
 
+  .d-flex {
+    display: flex;
+  }
   
+  .justify-content-end {
+    justify-content: flex-end;
+  }
+  .all {
+    position: relative; // Add this line
+    z-index: 2; // Add this line
+  }
   

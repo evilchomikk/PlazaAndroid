@@ -4,23 +4,17 @@
       </div>
       <div class="order-table">
         <div class="list-group" id="orderList">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let order of listoforders" (click)="selectOrder(order)">
+          <div class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let order of listoforders">
             <div class="d-flex w-100 justify-content-between" *ngIf="order.isActive">
-              
-            
-            <p class="mb-1">Typ zlecenia: <strong>{{ order.orderTypeName.ordertypeName | order}}</strong></p>
-            <p >Miejscowość: {{order.cityName}}</p>
-            <p >Czas: {{order.duration}}</p>
-            <p >Użytkownik: {{order.idOrdermaker.username}}</p>
-            <p >Cena: {{order.value}}</p>
-            <p >Status: {{order.statusName.statusesName | status}}</p>
-
-            
-            <button class="accept-order-button" (click)="takeOrder(order)" *ngIf="order.orderTypeName.ordertypeName === 'Take' ">Przyjmij Zlecenie</button> <!--ta nazwa to placeholder--> 
-            
-
+              <p class="mb-1">Typ zlecenia: <strong>{{ order.orderTypeName.ordertypeName | order}}</strong></p>
+              <p>Miejscowość: {{order.cityName}}</p>
+              <p>Czas: {{order.duration}}</p>
+              <p>Użytkownik: {{order.idOrdermaker.username}}</p>
+              <p>Cena: {{order.value}}</p>
+              <p>Status: {{order.statusName.statusesName | status}}</p>
+              <button class="accept-order-button" (click)="takeOrder(order); selectOrder(order)">Przyjmij Zlecenie</button>
+            </div>
           </div>
-          </a>
         </div>
       </div>
     </div>

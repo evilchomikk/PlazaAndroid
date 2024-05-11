@@ -28,5 +28,5 @@ export interface IOrders {
     orderTypeName: IOrderType;
     duration: string;
     value: number;
-    isActive: number;
+    isActive: boolean;
 }

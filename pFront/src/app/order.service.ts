@@ -11,8 +11,8 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  changeOrderStatus(orderId: number, newStatus: string): Observable<boolean> {
-    return this.http.post(`${this.baseUrl}/changeOrderStatus/${orderId}/${newStatus}`, {}, { observe: 'response' })
+  acceptOrder(orderId: number, newStatus: string): Observable<boolean> {
+    return this.http.post<void>(`${this.baseUrl}/api/order/acceptOrder/${orderId}`, { status: newStatus }, { observe: 'response' })
       .pipe(map((response: HttpResponse<any>) => {
         return response.status === 200;
       }));

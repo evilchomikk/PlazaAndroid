@@ -15,15 +15,15 @@
   
  
   .menu-btn {
-  width: 150px;
-  padding: 35px;
-  font-size: 28px;
-  background-color: orange;
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    padding: 35px;
+    font-size: 28px;
+    background-color: orange;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .menu-btn:hover {
@@ -33,6 +33,7 @@
   .dropdown-content {
   display: none;
   position: absolute;
+  z-index: 3;
   background-color: orange; 
   width: 150px;
   top: 100%;

@@ -10,19 +10,26 @@ import { OrderService } from '../order.service';
   styleUrls: ['./orders.component.scss'] // Zmiana z `styleUrl` na `styleUrls`
 })
 export class OrdersComponent {
-  
+
   takeOrder(order: IOrders) {
-    this.orderService.changeOrderStatus(order.id, 'accepted').subscribe(success => {
-      if (success) {
-        order.statusName.statusesName = 'accepted';
-        console.log('Order status successfully changed to accepted');
-      } else {
-        console.error('Failed to change order status');
-      }
-    }, error => {
-      console.error('Error occurred while changing order status:', error);
-    });
+    if (order.statusName.statusesName === 'accepted') {
+      const newStatus = 'waiting';
+      this.orderService.acceptOrder(order.id, newStatus).subscribe((success: boolean) => {
+        if (success) {
+          order.statusName.statusesName = newStatus;
+          console.log(`Order status successfully changed to ${newStatus}`);
+        } else {
+          console.error('Failed to change order status');
+        }
+      }, (error: any) => {
+        console.error('Error occurred while changing order status:', error);
+      });
+    }
+  
   }
+  
+  
+  
   
 
   @Input() listofcities: ICity[] = []; //z bazy danych 
@@ -32,12 +39,7 @@ export class OrdersComponent {
     
   }
   ngOnInit(): void {
-const navigation = this.router.getCurrentNavigation();
-    const state = navigation?.extras.state as { orders: IOrders[] };
-    if (state) {
-      this.listoforders = state.orders;
-    }
-    
+
     console.log(this.listoforders);
     this.getOrders().then(orders => this.listoforders = orders);
     
