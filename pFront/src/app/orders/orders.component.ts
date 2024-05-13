@@ -3,13 +3,16 @@ import { ICity } from '../../model/icity';
 import { Router } from '@angular/router';
 import { IOrders } from '../../model/iorders';
 import { OrderService } from '../order.service';
-
+import { ShowStatuses } from './showStatus.enum';
+import { showCityList } from './showCityList.enum';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'] // Zmiana z `styleUrl` na `styleUrls`
 })
 export class OrdersComponent {
+ShowStatuses: any;
+ShowCityList: any;
 
   takeOrder(order: IOrders) {
     if (order.statusName.statusesName === 'accepted') {
@@ -35,15 +38,51 @@ export class OrdersComponent {
   @Input() listofcities: ICity[] = []; //z bazy danych 
   @Input() listoforders: IOrders[] =[]; 
 
+  @Input() showedOrders: number = 10;  // customizacja liczby wyświetlanych zleceń
+  @Input() showStatus: ShowStatuses =  ShowStatuses.all; // customizacja wyświetlania statusu zlecenia
+  @Input() showCityList: showCityList = showCityList.lessOption; // customizacja wyświetlania listy miast
+
+  displayedOrders: any[] = [];
+
+
   constructor(private router: Router,  private orderService: OrderService) {
-    
+
   }
   ngOnInit(): void {
-
+console.log(this.listofcities);
     console.log(this.listoforders);
     this.getOrders().then(orders => this.listoforders = orders);
+    this.displayedOrders = this.listoforders.slice(0, this.showedOrders);
+  }
+
+  showMore() {
+    this.showedOrders += 10; // Możesz zmienić tę wartość na dowolną
+    this.displayedOrders = this.listoforders.slice(0, this.showedOrders);
     
   }
+
+  shouldDisplayOrder(order: any): boolean {
+    switch (this.showStatus) {
+      case ShowStatuses.all:
+        return true;
+      case ShowStatuses.waiting:
+        return order.statusName === 'waiting';
+      case ShowStatuses.rejected:
+        return order.statusName === 'rejected';
+      default:
+        return false;
+    }
+  }
+
+  filterOrdersByCity(event: any): void {
+    const cityName = event.target.value;
+    if (cityName === 'showAll') {
+      this.displayedOrders = this.listoforders.slice(0, this.showedOrders);
+    } else {
+      this.displayedOrders = this.listoforders.filter(order => order.cityName === cityName);
+    }
+  }
+  
 
   async getOrders(): Promise<IOrders[]> {
     try {

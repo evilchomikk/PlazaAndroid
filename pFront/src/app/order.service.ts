@@ -2,17 +2,18 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { IpService } from './ip.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private baseUrl = 'http://192.168.1.13:8080'; // replace with your backend base URL
+  private baseUrl = 'http://192.168.1.13:8080'; // replace with your backend base URL  pojebie mnie
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private ip:IpService) { }
 
   acceptOrder(orderId: number, newStatus: string): Observable<boolean> {
-    return this.http.post<void>(`${this.baseUrl}/api/order/acceptOrder/${orderId}`, { status: newStatus }, { observe: 'response' })
+    return this.http.post<void>('https://'+this.ip.Ip+`:8080/api/order/acceptOrder/${orderId}`, { status: newStatus }, { observe: 'response' })
       .pipe(map((response: HttpResponse<any>) => {
         return response.status === 200;
       }));

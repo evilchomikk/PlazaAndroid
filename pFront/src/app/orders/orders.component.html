@@ -1,22 +1,32 @@
 <div class="all">
-    <div class="header">
-      <h2>Lista Zleceń</h2>
-      </div>
-      <div class="order-table">
-        <div class="list-group" id="orderList">
-          <div class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let order of listoforders">
-            <div class="d-flex w-100 justify-content-between" *ngIf="order.isActive">
-              <p class="mb-1">Typ zlecenia: <strong>{{ order.orderTypeName.ordertypeName | order}}</strong></p>
-              <p>Miejscowość: {{order.cityName}}</p>
-              <p>Czas: {{order.duration}}</p>
-              <p>Użytkownik: {{order.idOrdermaker.username}}</p>
-              <p>Cena: {{order.value}}</p>
-              <p>Status: {{order.statusName.statusesName | status}}</p>
-              <button class="accept-order-button" (click)="takeOrder(order); selectOrder(order)">Przyjmij Zlecenie</button>
-            </div>
-          </div>
+  <div class="header">
+    <h2>Lista Zleceń</h2>
+  </div>
+
+  <select name="cities" class="form-select" aria-label="Default select example" style="width: 20vw; background-color: #007bff; color: white;" (change)="filterOrdersByCity($event)" *ngIf="showCityList === 'yes' || showCityList === 'lessOption'">
+    <option selected value="showAll" *ngIf="showCityList === 'yes'">Pokaż Wszystkie</option>
+    <option *ngFor="let city of listoforders" [value]="city.cityName">{{ city.cityName }}</option>
+    <option *ngIf="showCityList === 'yes' && listoforders.length === 0" value="xd">Brak zleceń</option>
+  </select>
+  
+  
+
+<div class="order-table">
+  <div class="list-group" id="orderList">
+    <ng-container *ngFor="let order of displayedOrders">
+      <div class="list-group-item list-group-item-action flex-column align-items-start" *ngIf="shouldDisplayOrder(order)">
+        <div class="d-flex w-100 justify-content-between">
+          <p class="mb-1">Typ zlecenia: <strong>{{ order.orderTypeName.ordertypeName | order}}</strong></p>
+          <p>Miejscowość: {{order.cityName}}</p>
+          <p>Czas: {{order.duration}}</p>
+          <p>Użytkownik: {{order.idOrdermaker.username}}</p>
+          <p>Cena: {{order.value}}</p>
+          <p>Status: {{order.statusName.statusesName | status}}</p>
+          <button class="accept-order-button" (click)="takeOrder(order); selectOrder(order)">Przyjmij Zlecenie</button>
         </div>
       </div>
-    </div>
-
-  
+    </ng-container>
+  </div>
+</div>
+<button *ngIf="displayedOrders.length < listoforders.length" (click)="showMore()">Pokaż więcej</button>
+</div>
