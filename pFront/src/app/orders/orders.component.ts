@@ -5,6 +5,7 @@ import { IOrders } from '../../model/iorders';
 import { OrderService } from '../order.service';
 import { ShowStatuses } from './showStatus.enum';
 import { showCityList } from './showCityList.enum';
+import { IpService } from '../ip.service';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -45,7 +46,7 @@ ShowCityList: any;
   displayedOrders: any[] = [];
 
 
-  constructor(private router: Router,  private orderService: OrderService) {
+  constructor(private router: Router,  private orderService: OrderService, private ip: IpService) {
 
   }
   ngOnInit(): void {
@@ -86,7 +87,7 @@ console.log(this.listofcities);
 
   async getOrders(): Promise<IOrders[]> {
     try {
-      const response = await fetch('http://localhost:8080/api/order/getAllOrders');
+      const response = await fetch('https://'+this.ip.Ip+':8080/api/order/getAllOrders');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

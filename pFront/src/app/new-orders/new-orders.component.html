@@ -1,0 +1,45 @@
+<section class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div class="row mb-3">
+            <label for="orderTypeName" class="form-label">Wybierz typ zamówienia:</label>
+            <select id="orderTypeName" class="form-select" formControlName="orderTypeName">
+              <option value="wantToSell">Want to Sell</option>
+              <option value="wantToBuy">Want to Buy</option>
+            </select>
+          </div>
+  
+          <div class="row mb-3">
+            <label for="cityName" class="form-label">Wybierz miejscowość:</label>
+            <select id="cityName" class="form-select" formControlName="cityName">
+              <option *ngFor="let city of listofcities" [value]="city.name">{{ city.name }}</option>
+            </select>
+          </div>
+  
+          <div class="row mb-3">
+            <label for="cost" class="form-label">Cost:</label>
+            <input id="cost" type="text" class="form-control" formControlName="cost">
+          </div>
+  
+          <div class="row mb-3">
+            <label for="endDate" class="form-label">End date:</label>
+            <input id="endDate" type="text" class="form-control" formControlName="endDate">
+          </div>
+  
+          <div *ngIf="orderTypeName === 'wantToSell'" class="row mb-3">
+            <label for="x" class="form-label">X Coordinate:</label>
+            <input id="x" type="text" class="form-control" formControlName="x">
+          </div>
+  
+          <div *ngIf="orderTypeName === 'wantToSell'" class="row mb-3">
+            <label for="y" class="form-label">Y Coordinate:</label>
+            <input id="y" type="text" class="form-control" formControlName="y">
+          </div>
+  
+          <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  

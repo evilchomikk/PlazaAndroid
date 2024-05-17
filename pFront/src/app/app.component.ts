@@ -112,4 +112,8 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/orders']),{state: {orders: this.orders}};
   }
 
+  goToNewOrders() {
+    this.router.navigate(['/new-orders'], {state: {cities: this.cities}});
+  }
+
 }

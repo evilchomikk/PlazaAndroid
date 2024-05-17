@@ -8,8 +8,7 @@ import { IpService } from './ip.service';
   providedIn: 'root'
 })
 export class OrderService {
-  private baseUrl = 'http://192.168.1.13:8080'; // replace with your backend base URL  pojebie mnie
-
+ 
   constructor(private http: HttpClient, private ip:IpService) { }
 
   acceptOrder(orderId: number, newStatus: string): Observable<boolean> {

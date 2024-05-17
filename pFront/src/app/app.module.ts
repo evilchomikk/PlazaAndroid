@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { WeatherComponent } from './weather/weather.component';
 import { OrdersComponent } from './orders/orders.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { LoginComponent } from './login/login.component';
 import { StatusPipe } from './status.pipe';
 import { OrderPipe } from './order.pipe';
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { HttpClientModule } from '@angular/common/http';
+import { NewOrdersComponent } from './new-orders/new-orders.component'; // Import HttpClientModule
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { HttpClientModule } from '@angular/common/http'; // Import HttpClientMod
     LoginComponent,
     StatusPipe,
     OrderPipe,
+    NewOrdersComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule, // Add HttpClientModule to the imports array
     NgbModule,
     RouterModule,
