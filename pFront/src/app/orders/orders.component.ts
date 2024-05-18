@@ -87,7 +87,7 @@ console.log(this.listofcities);
 
   async getOrders(): Promise<IOrders[]> {
     try {
-      const response = await fetch('https://'+this.ip.Ip+':8080/api/order/getAllOrders');
+      const response = await fetch('http://'+this.ip.Ip+':8080/api/order/getAllOrders');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
