@@ -5,6 +5,8 @@ import { end } from '@popperjs/core';
 import { ICity } from '../../model/icity';
 import { Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-new-orders',
@@ -15,7 +17,7 @@ export class NewOrdersComponent {
 
   @Input() listofcities: ICity[] = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private orderService: OrderService) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as { cities: ICity[] };
     if (state) {
@@ -27,19 +29,44 @@ export class NewOrdersComponent {
     cityName: new FormControl(''),
     orderTypeName: new FormControl(''),
     cost: new FormControl(''),
-    endDate: new FormControl(''),
+    duration: new FormControl(''),
     x: new FormControl(''),
     y: new FormControl(''),
   });
   
   onSubmit(): void {
     if (this.profileForm.valid) {
-      console.log('Form Submitted', this.profileForm.value);
-      if (this.profileForm.get('orderTypeName')?.value === 'Want To Sell') {
-        // addOrder()
+      const formValue = this.profileForm.value;
+      const orderDto = {
+        cityName: formValue.cityName,
+        orderTypeName: formValue.orderTypeName,
+        value: formValue.cost,
+        duration: "PT"+formValue.duration+"H",
+        x: formValue.x,
+        y: formValue.y
+      };
+      if (this.profileForm.get('orderTypeName')?.value === 'wantToBuy') {
+        this.orderService.addOrder(orderDto)
+        .subscribe(
+          response => {
+            console.log('Order submitted successfully', response);
+          },
+          error => {
+            console.error('Error submitting order', error);
+          }
+        );
+
       }
-      else if (this.profileForm.get('orderTypeName')?.value === 'Want To Buy') {
-        // addOrderWithLocation()
+      else if (this.profileForm.get('orderTypeName')?.value === 'wantToSell') {
+        this.orderService.addOrderWithLocation(orderDto)
+        .subscribe(
+          response => {
+            console.log('Order submitted successfully', response);
+          },
+          error => {
+            console.error('Error submitting order', error);
+          }
+        );
       }
       
     }

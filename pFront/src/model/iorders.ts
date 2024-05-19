@@ -29,4 +29,6 @@ export interface IOrders {
     duration: string;
     value: number;
     isActive: boolean;
+    x: number;
+    y: number;
 }

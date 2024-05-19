@@ -12,7 +12,21 @@ export class OrderService {
   constructor(private http: HttpClient, private ip:IpService) { }
 
   acceptOrder(orderId: number, newStatus: string): Observable<boolean> {
-    return this.http.post<void>('https://'+this.ip.Ip+`:8080/api/order/acceptOrder/${orderId}`, { status: newStatus }, { observe: 'response' })
+    return this.http.post<void>('http://'+this.ip.Ip+`:8080/api/order/acceptOrder/${orderId}`, { status: newStatus }, { observe: 'response' })
+      .pipe(map((response: HttpResponse<any>) => {
+        return response.status === 200;
+      }));
+  }
+
+  addOrder(orderDto: any): Observable<any> {
+    return this.http.post<void>('http://'+this.ip.Ip+`:8080/api/order/addOrder`, orderDto, { observe: 'response' })
+      .pipe(map((response: HttpResponse<any>) => {
+        return response.status === 200;
+      }));
+  }
+
+  addOrderWithLocation(orderDto: any): Observable<any> {
+    return this.http.post<void>('http://'+this.ip.Ip+`:8080/api/order/addOrderWithLocation`, orderDto, { observe: 'response' })
       .pipe(map((response: HttpResponse<any>) => {
         return response.status === 200;
       }));

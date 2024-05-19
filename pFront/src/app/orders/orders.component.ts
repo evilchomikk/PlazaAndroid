@@ -117,6 +117,8 @@ console.log(this.listofcities);
           duration: order.duration,
           value: order.value,
           isActive: order.isActive,
+          x: order.x,
+          y: order.y,
         };
         return newOrder as IOrders;
       });
