@@ -7,6 +7,8 @@ import { Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { OrderService } from '../order.service';
+import { SubmitTextLanguage } from './submitText.enum';
+import { ButtonColors } from './buttonColors.enum';
 
 @Component({
   selector: 'app-new-orders',
@@ -16,6 +18,10 @@ import { OrderService } from '../order.service';
 export class NewOrdersComponent {
 
   @Input() listofcities: ICity[] = [];
+
+  @Input() isInNegative: boolean = false;
+  @Input() submitColor: string = ButtonColors.Primary;
+  @Input() submitTextLanguage: SubmitTextLanguage = SubmitTextLanguage.English;
 
   constructor(private router: Router, private orderService: OrderService) {
     const navigation = this.router.getCurrentNavigation();
@@ -75,5 +81,7 @@ export class NewOrdersComponent {
     get orderTypeName() {
       return this.profileForm.get('orderTypeName')?.value;
     }
+
+
 
 }
