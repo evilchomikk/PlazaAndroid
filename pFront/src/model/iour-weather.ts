@@ -1,6 +1,6 @@
 export interface IOurWeather {
     temp: number;
-    humidity: number;
+    humidity: String;
     rainChance: number;
-    windSpeed: number;
+    windSpeed: string;
 }

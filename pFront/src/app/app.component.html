@@ -1,1 +1,29 @@
-<app-weather></app-weather>
+<!-- <app-weather [listofcities]="cities"></app-weather> -->
+
+<div id="main">
+  <div id="header">
+<div class="dropdown" >
+  <button onclick="toggleMenu()" class="menu-btn">MENU</button>
+  <div id="dropdown-menu" class="dropdown-content">
+    <button (click)="goToNewOrders()">Stwórz Zlecenie</button>
+    <button (click)="goToWeather()">Pogoda</button>
+    <button (click)="goToOrders()">Lista zleceń </button>
+  </div>
+</div>
+<img src="assets/logo.png" alt="Logo" class="user-img"/>
+    <h1 class="welcome-msg" style="font-weight: bold; font-style: italic;">BEACH SPOTTER</h1>
+    <div class="currency">
+      <label for="currency-input">Waluta:</label>
+      <p id="currency-input"></p>
+    </div>
+  </div>
+
+  <div id="content">
+<router-outlet></router-outlet>
+</div>
+
+  <div id="footer">
+    <h2>Stworzone przez: Hubert Kulka, Macin Mazurek, Konrad Klimek</h2>
+  </div>
+</div>
+<script src="js/script.js"></script>

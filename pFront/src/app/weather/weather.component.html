@@ -1,15 +1,76 @@
-<p>weather works!</p>
-
-
-
-
-<div [ngSwitch]="tempDegrees">
-    <p *ngSwitchCase="'C'">{{weather.temp}} +C</p>
-    <p *ngSwitchCase="'F'">{{weather.temp}} +F</p>
-    <p *ngSwitchCase="'K'">{{weather.temp}} +K</p>
-</div>
+<!--<p>weather works!</p>
 
 <div>
     <p>{{weather.temp}}+{{tempDegrees}}</p>
+
+    <code>
+        <pre>
+            {{listofcities | json}}
+        </pre>
+    </code>
+</div> -->
+
+
+<div id="weather-content">
+
+  <div class="rectangle">
+    <div style="padding: 20px;">
+
+
+      <section class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 ">
+
+            <div class="row">
+              <label for="location-select">Wybierz miejscowość: </label>
+              <select id="location-select" class="form-select " [(ngModel)]="selectedCity" style="margin-bottom: 10px;"
+                (change)="setWeather(selectedCity)">
+                <option *ngFor="let city of listofcities ; let i = index" [selected]="i===0" [ngValue]="city">{{city.name}} </option>
+              </select>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-12">
+                <div class="row">
+                  <label for="temperature-input text ">Temperatura:</label>
+                  <p id="temperature-input text ">{{weather.temp}}{{tempDegrees}}</p>
+                </div>
+
+                <div class="row">
+                  <label for="humidity-input text">Wilgotność:</label>
+                  <p id="humidity-input text">{{weather.humidity}}</p>
+                </div>
+
+                <div class="row">
+                  <label for="rain-chance-input text">Szansa na deszcz:</label>
+                  <p id="rain-chance-input text">{{weather.rainChance}}</p>
+                </div>
+
+                <div class="row">
+                  <label for="wind-speed-input text">Prędkość wiatru:</label>
+                  <p id="wind-speed-input text">{{weather.windSpeed}}{{speedUnit}}</p>
+                </div>
+
+                <div class="row">
+                  <label for="location-select">Wybierz Jednostke Temperatury: </label>
+                  <select id="location-select" class="form-select " [(ngModel)]="tempDegrees" style="margin-bottom: 10px;"
+                    (change)="setWeather(selectedCity)">
+                    <option [value]="'C'"> Celsius</option>
+                    <option [value]="'F'"> Fahrenheit</option>
+                    <option [value]="'K'"> Kelvin</option>
+                  </select>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </div>
 </div>
 
+
+<script src="script.js"></script>
